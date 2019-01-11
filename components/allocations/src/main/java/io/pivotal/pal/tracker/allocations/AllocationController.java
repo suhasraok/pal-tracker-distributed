@@ -31,6 +31,7 @@ public class AllocationController {
     public ResponseEntity<AllocationInfo> create(@RequestBody AllocationForm form) {
         System.out.println("Input received: " + form.toString());
         if (projectIsActive(form.projectId)) {
+            System.out.println("Creating record:" + form.toString());
             AllocationRecord record = gateway.create(formToFields(form));
             System.out.println("Allocation record created" + record.toString());
             return new ResponseEntity<>(present(record), HttpStatus.CREATED);
